@@ -19,12 +19,12 @@ exports.sendFriendRequest = async (req, res) => {
       return res.status(400).json({ error: 'Already Friends' })
     }
 
-    const friendRequest1 = await FriendRequest.findOne({
+    const friendRequest = await FriendRequest.findOne({
       sender: req.userId,
       receiver: req.params.userId,
     })
 
-    if (friendRequest1) {
+    if (friendRequest) {
       return res.status(400).json({ error: 'Friend Request already send' })
     }
 
@@ -88,14 +88,6 @@ exports.acceptFriendRequest = async (req, res) => {
       .status(200)
       .json({ message: 'Friend Request Accepted', user: chunkData })
 
-    // if (sender.socketId) {
-    //   let currentUserData = FilterUserData(currentUser)
-    //   req.io.to(sender.socketId).emit('friend-request-accept-status', {
-    //     user: currentUserData,
-    //     request_id: req.params.requestId,
-    //   })
-    //   req.io.to(sender.socketId).emit('Notification', { data: notification })
-    // }
   } catch (err) {
     console.log(err)
     return res.status(500).json({error:"Something went wrong"})
@@ -115,13 +107,7 @@ exports.cancelSendedFriendRequest = async (req, res) => {
     await FriendRequest.deleteOne({ _id: req.params.requestId })
 
     res.status(200).json({ message: 'Friend Request Canceled' })
-    // if (friendsRequest.receiver.socketId) {
-    //   req.io
-    //     .to(friendsRequest.receiver.socketId)
-    //     .emit('sended-friend-request-cancel', {
-    //       requestId: req.params.requestId,
-    //     })
-    // }
+    
   } catch (err) {
     console.log(err)
     return res.status(500).json({error:"Something went wrong"})
@@ -141,13 +127,7 @@ exports.declineFriendRequest = async (req, res) => {
     await FriendRequest.deleteOne({ _id: req.params.requestId })
 
     res.status(200).json({ message: 'Friend Request Declined' })
-    // if (friendsRequest.sender.socketId) {
-    //   req.io
-    //     .to(friendsRequest.sender.socketId)
-    //     .emit('received-friend-request-decline', {
-    //       requestId: req.params.requestId,
-    //     })
-    // }
+   
   } catch (err) {
     console.log(err)
     return res.status(500).json({error:"Something went wrong"})
