@@ -1,4 +1,4 @@
-const Post = require('../../models/Post')
+const Post = require('../../models/post')
 const FilterPostData = require('../../utils/FilterPostData')
 
 exports.fetchPostById = async (req, res) => {

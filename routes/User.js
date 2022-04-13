@@ -14,7 +14,7 @@ const {
   declineFriendRequest,
   cancelSendedFriendRequest,
   updateProfile
-} = require('../controllers/User/UserAction')
+} = require('../controllers/User/userAction')
 const authRequired = require('../middleware/requiredAuth')
 
 router.get('/me', authRequired, me)
