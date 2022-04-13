@@ -7,7 +7,6 @@ if (process.env.PORT !== "production") {
 const app = express()
 const http = require('http')
 const server = http.createServer(app)
-// const io = require('socket.io')(server)
 
 const UserRoutes = require('./routes/User')
 const AuthRoutes = require('./routes/Auth')
@@ -19,17 +18,11 @@ const {MONGODB_URI} = require("./config")
 app.use(cors())
 app.use(express.json())
 
-// app.use((req, res, next) => {
-//   io.req = req
-//   req.io = io
-//   next()
-// })
 
 app.use('/api/auth', AuthRoutes)
 app.use('/api/user', UserRoutes)
 app.use('/api/post', PostRoutes)
 
-// require('./socket')(io)
 
 mongoose
   .connect(MONGODB_URI, {
