@@ -1,5 +1,5 @@
 const User = require('../../models/user')
-const FriendRequest = require('../../models/friendRequest')
+const FriendRequest = require('../../models/friendrequest')
 const FilterUserData = require('../../utils/FilterUserData')
 
 exports.sendFriendRequest = async (req, res) => {
