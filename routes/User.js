@@ -6,7 +6,7 @@ const {
   fetchSendedFriendRequest,
   fetchIncommingFriendRequest,
   searchUsers
-} = require('../controllers/User/FetchUser')
+} = require('../controllers/User/fetchUser')
 
 const {
   sendFriendRequest,
