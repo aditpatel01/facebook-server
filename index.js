@@ -1,7 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
-require("dotenv").config()
+if (process.env.PORT !== "production") {
+  require("dotenv").config();
+}
 const app = express()
 const http = require('http')
 const server = http.createServer(app)
