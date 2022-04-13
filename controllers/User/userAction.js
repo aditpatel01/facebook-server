@@ -19,12 +19,12 @@ exports.sendFriendRequest = async (req, res) => {
       return res.status(400).json({ error: 'Already Friends' })
     }
 
-    const friendRequest = await FriendRequest.findOne({
+    const friendRequest1 = await FriendRequest.findOne({
       sender: req.userId,
       receiver: req.params.userId,
     })
 
-    if (friendRequest) {
+    if (friendRequest1) {
       return res.status(400).json({ error: 'Friend Request already send' })
     }
 
